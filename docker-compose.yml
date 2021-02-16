@@ -1,0 +1,32 @@
+version: '3'
+
+networks:
+    rosdocker:
+      driver: bridge
+
+services:
+    # ROS librealsense wrapper
+    ultrabot_stm:
+        build: .
+        container_name: ultrabot_stm
+        hostname: ultrabot_stm
+        working_dir: /root/catkin_ws
+        privileged: true
+        depends_on:
+            - rosmaster
+        networks: 
+            - rosdocker
+        environment:
+            - "ROS_HOSTNAME=ultrabot_stm"
+            - "ROS_MASTER_URI=http://rosmaster:11311"
+        command: roslaunch --wait 
+    # ROS MASTER (ROSCORE)
+    rosmaster:
+        image: ros:noetic-ros-core
+        container_name: rosmaster
+        hostname: rosmaster
+        networks: 
+            - rosdocker
+        ports:
+            - "11311:11311"
+        command: roscore
