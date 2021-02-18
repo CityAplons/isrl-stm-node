@@ -6,8 +6,7 @@ RUN   if [ "x$(nproc)" = "x1" ] ; then export USE_PROC=1 ; \
       else export USE_PROC=$(($(nproc)/2)) ; fi && \
       apt-get update && apt-get install -y \
       apt-utils \
-      python-catkin-tools \
-      ros-${ROS_DISTRO}-rosserial \
+      ros-${ROS_DISTRO}-rosserial &&\
       rm -rf /var/lib/apt/lists/*
 
 # Copy Project

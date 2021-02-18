@@ -5,7 +5,6 @@ networks:
       driver: bridge
 
 services:
-    # ROS librealsense wrapper
     ultrabot_stm:
         build: .
         container_name: ultrabot_stm
@@ -19,7 +18,7 @@ services:
         environment:
             - "ROS_HOSTNAME=ultrabot_stm"
             - "ROS_MASTER_URI=http://rosmaster:11311"
-        command: roslaunch --wait 
+        command: roslaunch --wait ultrabot_stm/ stm. launch
     # ROS MASTER (ROSCORE)
     rosmaster:
         image: ros:noetic-ros-core
