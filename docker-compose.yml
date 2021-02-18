@@ -18,7 +18,7 @@ services:
         environment:
             - "ROS_HOSTNAME=ultrabot_stm"
             - "ROS_MASTER_URI=http://rosmaster:11311"
-        command: roslaunch --wait ultrabot_stm/ stm. launch
+        command: roslaunch --wait ultrabot_stm stm.launch
     # ROS MASTER (ROSCORE)
     rosmaster:
         image: ros:noetic-ros-core
