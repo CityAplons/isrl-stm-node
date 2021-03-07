@@ -11,6 +11,10 @@ services:
         hostname: ultrabot_stm
         working_dir: /root/catkin_ws
         privileged: true
+        environment:
+            - UDEV=1
+        devices:
+            - '/dev:/dev'
         depends_on:
             - rosmaster
         networks: 
