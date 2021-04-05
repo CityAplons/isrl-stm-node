@@ -1,0 +1,5 @@
+<launch>
+  <include file="$(find runbot_stm)/launch/stm.launch" />
+  <node pkg="runbot_stm" type="broadcast_imu" name="broadcast_imu" />
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find runbot_stm)/config/imu_frames.rviz" />
+</launch>

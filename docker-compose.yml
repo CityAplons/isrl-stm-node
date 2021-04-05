@@ -7,8 +7,8 @@ networks:
 services:
     ultrabot_stm:
         build: .
-        container_name: ultrabot_stm
-        hostname: ultrabot_stm
+        container_name: runbot_stm
+        hostname: runbot_stm
         working_dir: /root/catkin_ws
         privileged: true
         environment:
@@ -20,9 +20,9 @@ services:
         networks: 
             - rosdocker
         environment:
-            - "ROS_HOSTNAME=ultrabot_stm"
+            - "ROS_HOSTNAME=runbot_stm"
             - "ROS_MASTER_URI=http://rosmaster:11311"
-        command: roslaunch --wait ultrabot_stm stm.launch
+        command: roslaunch --wait runbot_stm stm.launch
     # ROS MASTER (ROSCORE)
     rosmaster:
         image: ros:noetic-ros-core

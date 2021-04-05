@@ -1,0 +1,10 @@
+bool relay1
+bool relay2
+bool relay3
+bool relay4
+bool relay5
+bool relay6
+bool relay7
+---
+uint8[7] timeout
+bool[7] status

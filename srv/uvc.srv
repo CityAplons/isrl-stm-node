@@ -1,8 +1,0 @@
-bool left1
-bool left2
-bool right1
-bool right2
-bool fans
----
-uint8[5] timeout
-bool[5] status
