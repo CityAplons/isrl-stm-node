@@ -5,7 +5,7 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "toggle_relay");
   ros::NodeHandle n;
-  ros::ServiceClient client = n.serviceClient<ultrabot_stm::uvc>("uvc");
+  ros::ServiceClient client = n.serviceClient<ultrabot_stm::uvc>("stm/uvc");
   ultrabot_stm::uvc::Request req;
   ultrabot_stm::uvc::Response resp;
 
@@ -34,7 +34,7 @@ int main(int argc, char **argv)
     }
     c++;
     if(c>4) c = 0;
-    ros::service::waitForService("uvc", 5);
+    ros::service::waitForService("stm/uvc", 5);
     bool success = client.call(req,resp);
     if (success)
     {

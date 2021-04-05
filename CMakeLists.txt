@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(ultrabot_stm)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -135,6 +135,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(toggle_relay src/toggle_by_id.cpp)
+add_executable(sync_stm_node src/syncPublisher.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -148,6 +149,9 @@ add_executable(toggle_relay src/toggle_by_id.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(toggle_relay
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(sync_stm_node
   ${catkin_LIBRARIES}
 )
 
