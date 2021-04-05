@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(ultrabot_stm)
+project(runbot_stm)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -13,11 +13,12 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   sensor_msgs
   message_generation
+  tf2
+  tf2_ros
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -58,7 +59,7 @@ add_message_files(
 add_service_files(
    FILES
    led.srv
-   uvc.srv
+   relay.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -120,6 +121,9 @@ include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
 )
+include_directories(
+  ./src/tests
+)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -134,7 +138,8 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(toggle_relay src/toggle_by_id.cpp)
+add_executable(toggle_relay src/tests/toggle_by_id.cpp)
+add_executable(broadcast_imu src/tests/imu_rotation.cpp)
 add_executable(sync_stm_node src/syncPublisher.cpp)
 
 ## Rename C++ executable without prefix
@@ -149,6 +154,9 @@ add_executable(sync_stm_node src/syncPublisher.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(toggle_relay
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(broadcast_imu
   ${catkin_LIBRARIES}
 )
 target_link_libraries(sync_stm_node
