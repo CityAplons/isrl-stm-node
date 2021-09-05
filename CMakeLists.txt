@@ -142,6 +142,7 @@ add_executable(toggle_relay src/tests/toggle_by_id.cpp)
 add_executable(broadcast_imu src/tests/imu_rotation.cpp)
 add_executable(sync_stm_node src/syncPublisher.cpp)
 
+add_dependencies(toggle_relay runbot_stm_generate_messages_cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
